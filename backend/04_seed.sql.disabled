@@ -1,0 +1,32 @@
+-- 04_seed.sql
+-- Inserción de catálogo de pruebas para la clínica
+
+INSERT INTO duenos (nombre, telefono, email, direccion) VALUES
+('Carlos Ruiz', '9611234567', 'cruiz@mail.com', 'Centro 123'),
+('María García', '9617654321', 'mgarcia@mail.com', 'Sur 456');
+
+INSERT INTO veterinarios (nombre, cedula, dias_descanso, activo) VALUES
+('Dr. Roberto López', 'VET-2018-001', 'Domingo, Lunes', TRUE),
+('Dra. Ana Torres', 'VET-2020-050', 'Sábado, Domingo', TRUE),
+('Dr. Manuel Desactivado', 'VET-0000-000', 'Ninguno', FALSE);
+
+INSERT INTO mascotas (nombre, especie, raza, fecha_nacimiento, peso, dueno_id) VALUES
+('Firulais', 'Perro', 'Mestizo', '2020-05-10', 12.5, 1),
+('Max', 'Perro', 'Labrador', '2019-11-20', 25.0, 1),
+('Toby', 'Gato', 'Siamés', '2021-02-15', 4.5, 2),
+('Luna', 'Gato', 'Persa', '2022-08-01', 3.8, 2);
+
+-- Asignar las mascotas de Carlos al Dr. López (ID 1)
+INSERT INTO vet_atiende_mascota (veterinario_id, mascota_id) VALUES
+(1, 1), -- López atiende Firulais
+(1, 2); -- López atiende Max
+
+-- Asignar las mascotas de María a la Dra. Torres (ID 2)
+INSERT INTO vet_atiende_mascota (veterinario_id, mascota_id) VALUES
+(2, 3), -- Torres atiende Toby
+(2, 4); -- Torres atiende Luna
+
+INSERT INTO vacunas (nombre, lote, fecha_caducidad, stock_disponible, precio_compra, precio_venta_sugerido) VALUES
+('Rabia V1', 'L-RABIA-001', '2027-12-31', 50, 100.00, 250.00),
+('Parvovirus B1', 'L-PARVO-002', '2026-06-30', 30, 200.00, 450.00),
+('Triple Felina', 'L-FEL-003', '2028-01-01', 40, 150.00, 350.00);
